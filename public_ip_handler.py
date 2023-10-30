@@ -4,7 +4,7 @@ import subprocess
 import logging
 import signal, os
 import requests
-
+import time
 
 def finish(*_):
     global serveo_process
@@ -47,5 +47,5 @@ if __name__ == "__main__":
         change_dns_url(api_url, url_update_token, url)
         logging.info(f"Tunnel started: {url}; serveo pid: {serveo_process.pid}")
         while serveo_process.poll() is None: # Process still alive, tunnel works
-            pass
+            time.sleep(5)
         logging.info("Restarting tunnel...")
